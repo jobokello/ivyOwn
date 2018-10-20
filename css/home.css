@@ -1,0 +1,12 @@
+
+body {
+    background-image: url("../images/hdback.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.carousel {
+  width: 100%;
+}
+ .carousel-option{
+ 	font-weight: bolder;
+ }
