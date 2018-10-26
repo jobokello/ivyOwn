@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
@@ -20,7 +20,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container container-fluid">
+  <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -48,96 +49,97 @@
       </nav>
       <br>
       <br>
+      <br>
+      <br>
 
-	<h2>User registration page</h2>
+  <!--<h2>Shopper registration page</h2>-->
 
-	<form action="../php/shopperReg.php" method="POST">
+  <form action="../php/shopperReg.php" method="POST">
+    <fieldset>
+      <legend style="text-align: center;">Shopper registration page</legend>
+      <div class="form-group col-sm-4 col-md-4">
+      <label for="fName">First Name:</label>
+      <input type="text" class="form-control" id="fName" name="fName">
+    </div>
 
-	  <div class="form-group">
-	    <label for="fName">First Name:</label>
-	    <input type="text" class="form-control" id="fName" name="fName">
-	  </div>
+    <div class="form-group col-md-4 col-sm-4">
+      <label for="sName">Second Name:</label>
+      <input type="text" class="form-control" id="sName" name="sName">
+    </div>
 
-	  <div class="form-group">
-	    <label for="sName">Second Name:</label>
-	    <input type="text" class="form-control" id="sName" name="sName">
-	  </div>
+    <div class="form-group col-sm-4 col-md-4">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" name="username">
+    </div>
 
-	  <div class="form-group">
-	    <label for="username">Username:</label>
-	    <input type="text" class="form-control" id="username" name="username">
-	  </div>
+    <div class="form-group col-sm-8 col-md-8">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email">
+    </div>
 
-	  <div class="form-group">
-	    <label for="email">Email:</label>
-	    <input type="email" class="form-control" id="email" name="email">
-	  </div>
+    <div class="form-group col-md-4 col-sm-4">
+      <label for="phone">Phone Number:</label>
+      <input type="text" class="form-control" id="phone" name="phone">
+    </div>
 
-	  <div class="form-group">
-	    <label for="phone">Phone Number:</label>
-	    <input type="text" class="form-control" id="phone" name="phone">
-	  </div>
+  <div class="form-group col-sm-4 col-md-4">
+      <label for="county">County:</label>
+      <input list="county" class="form-control" name="county" id="county" required title="Enter your county of residence">
+      <datalist id="county">
+          <option value="Baringo">
+          <option value="Bomet">
+          <option value="Bungoma">
+          <option value="Busia">
+          <option value="Elgeyo Marakwet">
+          <option value="Embu">
+          <option value="Garissa">
+          <option value="Homabay">
+          <option value="Isiolo">
+          <option value="Kajiado">
+          <option value="Kakamega">
+          <option value="Kericho">
+          <option value="Kiambu">
+          <option value="Kilifi">
+          <option value="Kirinyaga">
+          <option value="Kisii">
+          <option value="Kisumu">
+          <option value="Kitui">
+          <option value="Kwale">
+          <option value="Laikipia">
+          <option value="Lamu">
+          <option value="Machakos">
+          <option value="Makueni">
+          <option value="Mandera">
+          <option value="Meru">
+          <option value="Migori">
+          <option value="Marsabit">
+          <option value="Mombasa">
+          <option value="Muranga">
+          <option value="Nairobi">
+          <option value="Naivasha">
+          <option value="Nakuru">
+          <option value="Nandi">
+          <option value="Narok">
+          <option value="Nyamira">
+          <option value="Nyandarua">
+          <option value="Nyeri">
+          <option value="Samburu">
+          <option value="Siaya">
+          <option value="Taita Taveta">
+          <option value="Tana River">
+          <option value="Tharaka Nithi">
+          <option value="Trans Nzoia">
+          <option value="Turkana">
+          <option value="Uasin Gishu">
+          <option value="Vihiga">
+          <option value="Wajir">
+          <option value="West Pokot">
+      </datalist>
+  </div>
 
-	<div class="form-group col-xs-6">
-	    <label for="county">County:</label>
-	    <input list="county" class="form-control" name="county" id="county" required title="Enter your county of residence">
-	    <datalist id="county">
-	        <option value="Baringo">
-	        <option value="Bomet">
-	        <option value="Bungoma">
-	        <option value="Busia">
-	        <option value="Elgeyo Marakwet">
-	        <option value="Embu">
-	        <option value="Garissa">
-	        <option value="Homabay">
-	        <option value="Isiolo">
-	        <option value="Kajiado">
-	        <option value="Kakamega">
-	        <option value="Kericho">
-	        <option value="Kiambu">
-	        <option value="Kilifi">
-	        <option value="Kirinyaga">
-	        <option value="Kisii">
-	        <option value="Kisumu">
-	        <option value="Kitui">
-	        <option value="Kwale">
-	        <option value="Laikipia">
-	        <option value="Lamu">
-	        <option value="Machakos">
-	        <option value="Makueni">
-	        <option value="Mandera">
-	        <option value="Meru">
-	        <option value="Migori">
-	        <option value="Marsabit">
-	        <option value="Mombasa">
-	        <option value="Muranga">
-	        <option value="Nairobi">
-	        <option value="Naivasha">
-	        <option value="Nakuru">
-	        <option value="Nandi">
-	        <option value="Narok">
-	        <option value="Nyamira">
-	        <option value="Nyandarua">
-	        <option value="Nyeri">
-	        <option value="Samburu">
-	        <option value="Siaya">
-	        <option value="Taita Taveta">
-	        <option value="Tana River">
-	        <option value="Tharaka Nithi">
-	        <option value="Trans Nzoia">
-	        <option value="Turkana">
-	        <option value="Uasin Gishu">
-	        <option value="Vihiga">
-	        <option value="Wajir">
-	        <option value="West Pokot">
-	       ">
-
-	    </datalist>
-	</div>
-
-    <div class="form-group col-xs-6">
+    <div class="form-group col-sm-4 col-md-4">
         <label for="constituency">Constituency:</label>
-        <input list="constituency" class="form-control" id="constituencyio" name="constituency" required title="enter your constiturncy of residence">
+        <input list="constituency" class="form-control" id="constituency" name="constituency" required title="enter your constiturncy of residence">
         <datalist id="constituency">
             <option value="Baringo East">
             <option value="Baringo West">
@@ -390,24 +392,25 @@
         </datalist>
     </div>
 
+    <!--<div class="col-md-4 col-sm-4"></div>-->
 
-	  <div class="form-group">
-	    <label for="clientPassword">Name:</label>
-	    <input type="password" class="form-control" id="name" name="name">
-	  </div>
+    <div class="clearfix"></div>
 
-	  <div class="form-group">
-	    <label for="latitude">Latitude:</label>
-	    <input type="text" class="form-control" id="email" name="latitude">
-	  </div>
+    <div class="form-group col-sm-4 col-md-4">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" name="password">
+    </div>
 
-	  <div class="form-group">
-	    <label for="longitude">longitude:</label>
-	    <input type="text" class="form-control" id="pwd" name="longitude">
-	  </div>
+    <div class="clearfix"></div>
 
-	  <button type="submit" class="btn btn-default">Submit</button>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </div>
+
+    </fieldset>
+
+    
 </form>
-
+</div>
 </body>
 </html>
