@@ -1,64 +1,64 @@
 <?php
-	session_start();
-	//gives variable for creating the connection
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "ivyproject";
+  session_start();
+  //gives variable for creating the connection
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "ivyproject";
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+  $errors = array();
 
-	$error = ""; //Variable for storing our errors.
+  // Create connection
+  
+  $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-	if(isset($_POST["submit"]))
-	{
-		if(empty($_POST["username"]) || empty($_POST["password"]))
-		{
-			$error = "Both fields are required.";
-		}else
-		{
-			// Define $username and $password
-			
-			$password=$_POST['password'];
+// Check connection
+  if (!$conn){
+      die("Connection failed: " . mysqli_connect_error());
+  }
+  else{
+    echo "Connected successfully";
 
-			if (isset($_POST['email'])) 
-			{ 
-				$shopperEmail = trim($_POST["email"]);
-			} 
+    if(isset($_POST['submit'])){
 
-			if (isset($_POST['password'])) 
-			{ 
-				$shopperPassword = trim($_POST["password"]);
-			}
+      if(empty($_POST['email']) || empty($_POST['password'])){
+          array_push($errors,'something is missing');
+      }
+      else{
 
-			// To protect from MySQL injection
-			$shopperEmail = stripslashes($shopperEmail);
-			$shopperPassword = stripslashes($shopperPassword);
-			$shopperEmail = mysqli_real_escape_string($dbname, $shopperEmail);
-			$shopperPassword = mysqli_real_escape_string($dbname, $shopperPassword);
-			$shopperPassword = md5($shopperPassword);
-			
-			//Check username and password from database
-			$sql="SELECT shopperID, shopperusername FROM shopperinfo WHERE shopperemail='$shopperEmail' and shopperPassword='$shopperPassword'";
+        //take data from the form 
+        $shopperEmail = $_POST['email'];
+        $shopperPassword = $_POST['password'];
 
-			$result=mysqli_query($dbname,$sql);
+        //remove any unneccessary characters from the data
+        $shopperEmail = stripslashes($shopperEmail);
+        $shopperPassword = stripslashes($shopperPassword);
 
-			$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-			
-			//If username and password exist in our database then create a session.
-			//Otherwise echo error.
-			
-			if(mysqli_num_rows($result) == 1)
-			{
-				$_SESSION['username'] = $shopperEmail; // Initializing Session
-				header("location: designs.html"); // Redirecting To Other Page
-			}else
-			{
-				$error = "Incorrect username or password.";
-			}
+        //remove any SQL command by hackers
+        $shopperEmail = mysqli_real_escape_string($conn, $shopperEmail);
+        $shopperPassword = mysqli_real_escape_string($conn, $shopperPassword);
 
-		}
-	}
+        //encrypt the data
+        $shopperPassword = md5($shopperPassword);
 
+        $sql="SELECT shopperID, shopperUsername FROM shopperinfo WHERE shopperEmail = '$shopperEmail' AND shopperPassword = '$shopperPassword'";
+
+        $result=mysqli_query($conn,$sql);
+
+        $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+        if (mysqli_num_rows($result) == 1){
+
+          //taking session variables
+          $_SESSION['shopperID'] = $row['shopperID'];
+          $_SESSION['shopperUsername'] = $row['shopperUsername'];
+
+          header("location: ../html/designs.php"); // Redirecting To Other Page
+        }
+        else{
+          array_push($errors,"Incorrect username or password.");
+        }
+      }
+    }
+  } 
 ?>
