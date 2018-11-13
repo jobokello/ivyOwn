@@ -68,6 +68,14 @@
 	 z-index: 1;
 	 background-color: red !important;
 	}
+
+  td{
+    text-align: center;
+  }
+
+  table,tr,td{
+    border-radius: 5px;
+  }
   </style>
 </head>
 <body>
@@ -109,7 +117,7 @@
       <br>
 
       <legend style="text-align: center;">Pending Orders List</legend>
-      <table class=" table table-hover table-striped">
+      <table class=" table table-hover table-bordered table-striped">
 
       <tr>
         <td>Order number</td>
@@ -117,7 +125,7 @@
         <td>Product Name</td>
         <td>Description</td>
         <td>Price</td>
-        <td style="text-align: center;" colspan="3">Designer</td>
+        <td style="text-align: center;" colspan="2">Designer</td>
         <td>Payment Status</td>
         <td>Designer Status</td>
         <td>Delivery Status</td>
@@ -142,13 +150,16 @@
           $result = mysqli_query($conn,$sql2);
 
           while($row3 = mysqli_fetch_array($result)) {
-            echo "<td>".$row3['designerFname']."<td>";
-            echo "<td>".$row3['designerSname']."<td>";
+            echo "<td>".$row3['designerFname']."</td>";
+            echo "<td>".$row3['designerSname']."</td>";
           }
 
-          echo "<td>".$row['totalCost']."</td>";
-          echo "<td>".$row['clientJobStatus']."</td>";  
-          echo "<td><a href=\"../php/clientjobconfirmation.php?id=$res[jobID]\">Order Delivered</a> | <a href=\"../php/clientjobcancellation.php?id=$res[jobID]\" onClick=\"return confirm('Are you sure you want to cancel the and get a refund?')\">Cancel Order</a></td>";
+          echo "<td>".$row['paymentStatus']."</td>";
+          echo "<td>".$row['designerStatus']."</td>";
+          echo "<td>".$row['trpAgentStatus']."</td>";
+          echo "<td>".$row['shopperStatus']."</td>";        
+          echo "<td><button style='margin:5px' type='button' class='btn btn-primary btn-block center-block'><a style='text-decoration: none; color: white;' href=\"../php/shopperConfirmation.php?id=$row[orderID]\">Pay for Order</a></button><button style='margin:5px' type='button' class='btn btn-success center-block'><a style='text-decoration: none; color: white;' href=\"../php/shopperConfirmation.php?id=$row[orderID]\">Order is Delivered</a></button> 
+          <button style='margin:5px' type='button' class='btn btn-danger btn-block center-blocks'><a style='text-decoration: none; color: white;' href=\"../php/shopperCancellation.php?id=$row[orderID]\" onClick=\"return confirm('Are you sure you want to cancel the and get a refund?')\">Cancel Order</a></button></td>";
           echo "</tr>";   
         }
       ?>
