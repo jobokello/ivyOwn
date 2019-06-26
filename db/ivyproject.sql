@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2018 at 02:59 PM
+-- Generation Time: Dec 04, 2018 at 08:31 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -41,26 +41,10 @@ CREATE TABLE `clothesinfo` (
 --
 
 INSERT INTO `clothesinfo` (`clothID`, `designerID`, `clothName`, `clothDescription`, `clothPrice`, `clothCategory`, `image`) VALUES
-(1, 4, 'dashiki', 'for the couples', 10000, 'couples', 'couple (10).jpg'),
-(2, 4, 'dashiki', 'for the couples', 10000, 'couples', 'couple (10).jpg'),
-(12, 4, 'Jack Johnson', 'f gywgfvghgefve', 10000, 'men', 'couple (10).jpg'),
-(11, 4, 'uhygf', 'byughv', 12345, 'men', 'couple (10).jpg'),
-(10, 4, 'gehbd', 'kjihug', 10000, 'men', 'couple (10).jpg'),
-(9, 4, 'dcbsu', 'ds hv vdsv', 10000, 'men', 'couple (10).jpg'),
-(8, 4, 'dashiki', 'fsacv', 10000, 'men', 'couple (10).jpg'),
-(13, 4, 'dashiki', 'youte', 10000, 'men', 'couple (10).jpg'),
-(14, 4, 'Royal Kitenge', 'gfyugfwdsx', 10000, 'men', 'couple (10).jpg'),
-(15, 4, 'itdwgsyd', 'jeby f', 3785, 'men', 'couple (10).jpg'),
-(16, 4, 'cr ftg', 'gfvcg cdc', 200, 'men', 'couple (10).jpg'),
-(17, 4, 'ogaoo', 'cpouples', 2437, 'couples', 'couple (5).jpg'),
-(18, 4, 'man25', 'urban', 10000, 'men', 'men_2_225x225.jpg'),
-(19, 4, 'nguo ya brown', 'hii nguo ni fire', 5000, 'men', 'men (18).jpg'),
-(20, 4, 'pia hii ni nomare', 'bro', 560, 'men', 'men (21).jpg'),
-(21, 4, 'slayqueen armor', 'drops', 500, 'women', 'women (2).jpg'),
-(22, 4, 'crew regalia', 'kjfkehwdgsy', 6589, 'women', 'women (7).jpg'),
-(23, 5, 'purity', 'hellllo', 12000, 'couples', 'couple (8).jpg'),
-(24, 6, 'sylvia', 'hello', 12000, 'couples', 'couple (6).jpg'),
-(25, 7, 'Micheal', 'helllloooo', 20000, 'men', 'men (9).jpg');
+(30, 8, 'uyfhvg', 'ctfghjk', 12345, 'couples', 'couple (2).jpg'),
+(31, 8, 'Jack Johnson', 'uyughjb', 10000, 'couples', 'couple (3).jpg'),
+(32, 8, 'dashiki', 'ubtybuvtyv', 10000, 'kids', 'couple (20).jpg'),
+(33, 8, 'simple Casual', 'iu8i oi6vt7y', 10000, 'men', 'men (25).jpg');
 
 -- --------------------------------------------------------
 
@@ -77,6 +61,7 @@ CREATE TABLE `designerinfo` (
   `designerPhonenumber` varchar(15) NOT NULL,
   `designerCounty` varchar(40) NOT NULL,
   `designerConstituency` varchar(40) NOT NULL,
+  `passwordReset` int(10) DEFAULT NULL,
   `designerPassword` varchar(40) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -84,12 +69,8 @@ CREATE TABLE `designerinfo` (
 -- Dumping data for table `designerinfo`
 --
 
-INSERT INTO `designerinfo` (`designerID`, `designerFname`, `designerSname`, `designerUsername`, `designerEmail`, `designerPhonenumber`, `designerCounty`, `designerConstituency`, `designerPassword`) VALUES
-(3, 'sylvia', 'yvonne', 'yvette', 'jobokello5@gmail.com', '734665786', 'nairobi', 'Embakasi', 'efb02011d94efa80ae173716e51bad47'),
-(4, 'dedan', 'sewe', 'dedan', 'sewe@yahoo.com', '734665786', 'nairobi', 'Embakasi', '3e2c40ab0228b135920d1ee60574bbce'),
-(5, 'job', 'opiyo', 'mac', 'jobokello5@gmail.com', '0745673456', 'mombasa', 'kakamega', 'fcea920f7412b5da7be0cf42b8c93759'),
-(6, 'sylvia', 'yvonne', 'syl', 'sylviayvonne65@gmail.com', '', 'mombasa', 'kakamega', 'fcea920f7412b5da7be0cf42b8c93759'),
-(7, 'mark', 'opiyo', 'prosy', 'jobokello5@gmail.com', '', 'Garissa', 'Sirisia', '25f9e794323b453885f5181f1b624d0b');
+INSERT INTO `designerinfo` (`designerID`, `designerFname`, `designerSname`, `designerUsername`, `designerEmail`, `designerPhonenumber`, `designerCounty`, `designerConstituency`, `passwordReset`, `designerPassword`) VALUES
+(8, 'sylvia', 'yvonne', 'syl', 'sylviayvonne65@gmail.com', '734665786', 'kisumu', 'kombewa', NULL, '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -99,14 +80,24 @@ INSERT INTO `designerinfo` (`designerID`, `designerFname`, `designerSname`, `des
 
 CREATE TABLE `dispatch` (
   `dispatchID` int(10) NOT NULL,
+  `orderID` int(10) DEFAULT NULL,
   `clothName` varchar(40) NOT NULL,
   `trpFee` int(10) NOT NULL,
   `shopperID` int(10) NOT NULL,
   `trpAgentID` int(10) NOT NULL,
-  `shopperLattitude` varchar(50) NOT NULL,
-  `shopperLongitude` varchar(50) NOT NULL,
-  `deliveryStatus` varchar(20) NOT NULL
+  `shopperLattitude` varchar(50) DEFAULT NULL,
+  `shopperLongitude` varchar(50) DEFAULT NULL,
+  `deliveryStatus` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dispatch`
+--
+
+INSERT INTO `dispatch` (`dispatchID`, `orderID`, `clothName`, `trpFee`, `shopperID`, `trpAgentID`, `shopperLattitude`, `shopperLongitude`, `deliveryStatus`) VALUES
+(13, 27, 'uyfhvg', 200, 21, 8, NULL, NULL, 'confirmed'),
+(14, 27, 'uyfhvg', 200, 21, 8, NULL, NULL, 'confirmed'),
+(15, 27, 'uyfhvg', 200, 21, 8, NULL, NULL, 'pending');
 
 -- --------------------------------------------------------
 
@@ -116,16 +107,34 @@ CREATE TABLE `dispatch` (
 
 CREATE TABLE `orders` (
   `orderID` int(10) NOT NULL,
+  `clothID` int(11) NOT NULL,
   `clothName` varchar(40) NOT NULL,
   `clothDescription` varchar(400) NOT NULL,
   `orderPrice` int(10) NOT NULL,
+  `trpFee` int(10) DEFAULT NULL,
   `shopperID` int(10) NOT NULL,
   `designerID` int(10) NOT NULL,
-  `paymentStatus` varchar(20) NOT NULL DEFAULT 'pending',
-  `designerStatus` varchar(20) NOT NULL,
-  `trpAgentStatus` varchar(20) NOT NULL,
-  `shopperStatus` varchar(20) NOT NULL
+  `trpAgentID` int(11) DEFAULT NULL,
+  `paymentCode` varchar(20) NOT NULL DEFAULT 'missing',
+  `paymentStatus` varchar(20) NOT NULL DEFAULT 'unpaid',
+  `designerStatus` varchar(20) NOT NULL DEFAULT 'pending',
+  `trpAgentStatus` varchar(20) NOT NULL DEFAULT 'pending',
+  `shopperStatus` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `clothID`, `clothName`, `clothDescription`, `orderPrice`, `trpFee`, `shopperID`, `designerID`, `trpAgentID`, `paymentCode`, `paymentStatus`, `designerStatus`, `trpAgentStatus`, `shopperStatus`) VALUES
+(27, 30, 'uyfhvg', 'ctfghjk', 12345, 200, 21, 8, 8, 'vfcegbdhcx', 'Paid', 'Confirmed', 'confirmed', 'pending'),
+(28, 31, 'Jack Johnson', 'uyughjb', 10000, NULL, 21, 8, NULL, '097ytgyuiu', 'Paid', 'pending', 'pending', 'pending'),
+(29, 32, 'dashiki', 'ubtybuvtyv', 10000, NULL, 21, 8, NULL, 'missing', 'unpaid', 'pending', 'pending', 'pending'),
+(30, 33, 'simple Casual', 'iu8i oi6vt7y', 10000, NULL, 21, 8, NULL, 'missing', 'unpaid', 'pending', 'pending', 'pending'),
+(31, 33, 'simple Casual', 'iu8i oi6vt7y', 10000, NULL, 21, 8, NULL, 'missing', 'unpaid', 'pending', 'pending', 'pending'),
+(32, 30, 'uyfhvg', 'ctfghjk', 12345, NULL, 21, 8, NULL, 'missing', 'unpaid', 'pending', 'pending', 'pending'),
+(33, 32, 'dashiki', 'ubtybuvtyv', 10000, NULL, 21, 8, NULL, 'missing', 'unpaid', 'pending', 'pending', 'pending'),
+(34, 30, 'uyfhvg', 'ctfghjk', 12345, NULL, 21, 8, NULL, 'missing', 'unpaid', 'pending', 'pending', 'pending');
 
 -- --------------------------------------------------------
 
@@ -158,6 +167,9 @@ CREATE TABLE `shopperinfo` (
   `shopperPhonenumber` varchar(15) NOT NULL,
   `shopperCounty` varchar(40) NOT NULL,
   `shopperConstituency` varchar(40) NOT NULL,
+  `longitude` varchar(126) DEFAULT 'Empty',
+  `latitude` varchar(126) DEFAULT 'Empty',
+  `passwordReset` int(10) DEFAULT '0',
   `shopperPassword` varchar(40) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -165,17 +177,8 @@ CREATE TABLE `shopperinfo` (
 -- Dumping data for table `shopperinfo`
 --
 
-INSERT INTO `shopperinfo` (`shopperID`, `shopperFname`, `shopperSname`, `shopperUsername`, `shopperEmail`, `shopperPhonenumber`, `shopperCounty`, `shopperConstituency`, `shopperPassword`) VALUES
-(9, 'job', 'okello', 'jobson', 'jobokello5@gmail.com', '0728633625', 'nairobi', 'kibra', '685b142ec68c96fd2d898b11da966670'),
-(10, 'yvonne', 'sylvia', 'yvette', 'sylviayvonne65@gmail.com', '0728633625', 'nairobi', 'kibra', 'efb02011d94efa80ae173716e51bad47'),
-(11, 'dedan', 'sewe', 'sewe', 'sewe@yahoo.com', '2243545231', 'Kisumu', 'kombewa', 'ad8b2bfedc34541070953461e62f533a'),
-(12, 'sylvia', 'yvonne', 'syl', 'sylviayvonne65@gmail.com', '', 'mombasa', 'kakamega', 'fcea920f7412b5da7be0cf42b8c93759'),
-(13, 'sylvia', 'yvonne', 'syl', 'sylviayvonne65@gmail.com', '', 'mombasa', 'kakamega', 'fcea920f7412b5da7be0cf42b8c93759'),
-(14, 'sylvia', 'yvonne', 'ivy', 'sylviayvonne65@gmail.com', '', 'kenya', 'sarangombe', 'fcea920f7412b5da7be0cf42b8c93759'),
-(15, 'sylvia', 'yvonne', 'ivy', 'sylviayvonne65@gmail.com', '0745673456', 'mombasa', 'kakamega', 'fcea920f7412b5da7be0cf42b8c93759'),
-(16, 'mark', 'nyang', 'mac', 'jobokello5@gmail.com', '0745673456', 'mombasa', 'kakamega', '25d55ad283aa400af464c76d713c07ad'),
-(17, 'mark', 'nyang', 'mac', 'jobokello5@gmail.com', '0745673456', 'mombasa', 'kakamega', '25d55ad283aa400af464c76d713c07ad'),
-(18, 'sylvia', 'yvonne', 'ivy', 'sylviayvonne65@gmail.com', '', 'mombasa', 'kakamega', '25f9e794323b453885f5181f1b624d0b');
+INSERT INTO `shopperinfo` (`shopperID`, `shopperFname`, `shopperSname`, `shopperUsername`, `shopperEmail`, `shopperPhonenumber`, `shopperCounty`, `shopperConstituency`, `longitude`, `latitude`, `passwordReset`, `shopperPassword`) VALUES
+(21, 'jack', 'oyoo', 'jack', 'jacknovak009@gmail.com', '8976345987', 'kisumu', 'kombewa', 'Empty', 'Empty', 0, '6e746c6d05171e4e7b532ea23cf9104a');
 
 -- --------------------------------------------------------
 
@@ -192,6 +195,8 @@ CREATE TABLE `trpagentinfo` (
   `trpAgentPhonenumber` varchar(15) NOT NULL,
   `trpAgentCounty` varchar(40) NOT NULL,
   `trpAgentConstituency` varchar(40) NOT NULL,
+  `jobCount` int(10) DEFAULT '0',
+  `passwordReset` int(10) DEFAULT NULL,
   `trpAgentPassword` varchar(40) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -199,8 +204,8 @@ CREATE TABLE `trpagentinfo` (
 -- Dumping data for table `trpagentinfo`
 --
 
-INSERT INTO `trpagentinfo` (`trpAgentID`, `trpAgentFname`, `trpAgentSname`, `trpAgentUsername`, `trpAgentEmail`, `trpAgentPhonenumber`, `trpAgentCounty`, `trpAgentConstituency`, `trpAgentPassword`) VALUES
-(6, 'dedan', 'sewe', 'dedan', 'sewe@yahoo.com', '2243545231', 'nairobi', 'kibra', 'ad8b2bfedc34541070953461e62f533a');
+INSERT INTO `trpagentinfo` (`trpAgentID`, `trpAgentFname`, `trpAgentSname`, `trpAgentUsername`, `trpAgentEmail`, `trpAgentPhonenumber`, `trpAgentCounty`, `trpAgentConstituency`, `jobCount`, `passwordReset`, `trpAgentPassword`) VALUES
+(8, 'Jack', 'Johnson', 'job', 'jobokello5@gmail.com', '0734665786', 'nairobi', 'kombewa', 3, NULL, '128a2e44a9ae73b673c43576cc9b2e03');
 
 -- --------------------------------------------------------
 
@@ -215,8 +220,16 @@ CREATE TABLE `wages` (
   `trpAgentID` int(11) NOT NULL,
   `trpAgentWage` int(11) NOT NULL,
   `designerWage` int(11) NOT NULL,
-  `wageStatus` varchar(20) NOT NULL
+  `wageStatus` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wages`
+--
+
+INSERT INTO `wages` (`wageID`, `orderID`, `designerID`, `trpAgentID`, `trpAgentWage`, `designerWage`, `wageStatus`) VALUES
+(17, 27, 8, 8, 200, 12345, 'pending'),
+(18, 27, 8, 8, 200, 12345, 'pending');
 
 --
 -- Indexes for dumped tables
@@ -265,6 +278,12 @@ ALTER TABLE `trpagentinfo`
   ADD PRIMARY KEY (`trpAgentID`);
 
 --
+-- Indexes for table `wages`
+--
+ALTER TABLE `wages`
+  ADD PRIMARY KEY (`wageID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -272,32 +291,37 @@ ALTER TABLE `trpagentinfo`
 -- AUTO_INCREMENT for table `clothesinfo`
 --
 ALTER TABLE `clothesinfo`
-  MODIFY `clothID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `clothID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `designerinfo`
 --
 ALTER TABLE `designerinfo`
-  MODIFY `designerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `designerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `dispatch`
 --
 ALTER TABLE `dispatch`
-  MODIFY `dispatchID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `dispatchID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `shopperinfo`
 --
 ALTER TABLE `shopperinfo`
-  MODIFY `shopperID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `shopperID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `trpagentinfo`
 --
 ALTER TABLE `trpagentinfo`
-  MODIFY `trpAgentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `trpAgentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `wages`
+--
+ALTER TABLE `wages`
+  MODIFY `wageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

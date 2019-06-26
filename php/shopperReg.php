@@ -27,7 +27,7 @@ if (isset($_POST['sName']))
 
 if (isset($_POST['username'])) 
 { 
-$shopperusername = trim($_POST["username"]); 
+	$shopperusername = trim($_POST["username"]); 
 } 
 
 if (isset($_POST['email'])) 
@@ -47,8 +47,9 @@ if (isset($_POST['county']))
 
 if (isset($_POST['constituency'])) 
 { 
-$shopperConstituency = trim($_POST["constituency"]);
+	$shopperConstituency = trim($_POST["constituency"]);
 } 
+
 
 if (isset($_POST['password'])) 
 { 
@@ -56,7 +57,7 @@ if (isset($_POST['password']))
 } 
 
 $sql = "INSERT INTO shopperinfo (shopperfName, shoppersName,shopperusername, shopperemail, shopperPhonenumber, shopperCounty, shopperConstituency, shopperPassword)
-VALUES ('$shopperfName', '$shoppersName', '$shopperusername', '$shopperemail', '$shopperPhonenumber', '$shopperCounty', '$shopperConstituency', '$shopperPassword')";
+VALUES ('$shopperfName', '$shoppersName', '$shopperusername', '$shopperemail', '$shopperPhonenumber', '$shopperCounty', '$shopperConstituency','$shopperPassword')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";

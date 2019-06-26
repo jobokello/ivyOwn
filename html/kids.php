@@ -2,7 +2,13 @@
 	session_start();
 	echo 'time to shop';
 	echo $_SESSION['shopperID'];
-	$login_user = $_SESSION['shopperUsername']; 
+	$login_user = $_SESSION['shopperUsername'];
+
+  if(isset($_SESSION['shopperID'])){
+    $status = "okay";
+  }else{
+    header("location: shopperLogin.php");
+  } 
 
 ?>
 
@@ -58,7 +64,7 @@
         <!--links for navbar on the left-->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="../index.html">Home</a></li>
               <li><a href="designs.php">Trends</a></li>
               <li><a href="men.php">Men</a></li>
               <li><a href="women.php">Women</a></li>
@@ -93,7 +99,7 @@
 				    echo "<div class='card-body'>";
 				      echo "<h4 style='text-align: center; text-transform: capitalize; font-weight: bold;' class='card-title'>".$row['clothName']."</h4>";
 				      echo "<p class='card-text' style='text-align: center; text-transform: capitalize; font-weight: bold;'>Ksh.".$row['clothPrice']."</p>";
-				      echo "<button class = 'text-center center-block grow grow-button btn btn-primary text-center'>Add to Cart<a href='#' class=''></a></button>";
+				      echo "<button class = 'text-center center-block grow grow-button btn btn-primary text-center'>Add to Cart<a href='addToCart.php' class=''></a></button>";
 				      echo "<br>";
 				      echo "<br>";
 				    echo "</div>";
@@ -104,87 +110,7 @@
 	</div>	
 
       <!-- Footer -->
-<footer style="border: 1px solid grey; background: #red !important;" class="page-footer font-small blue pt-4">
 
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-
-      <!-- Grid row -->
-      <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-
-          <!-- Content -->
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns here to organize your footer content.</p>
-
-        </div>
-        <!-- Grid column -->
-
-        <hr class="clearfix w-100 d-md-none pb-3">
-
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-      </div>
-      <!-- Grid row -->
-
-    </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-
-  </footer>
 
 </body>
 </html>

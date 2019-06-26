@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	echo 'time to shop';
 	$shopper = $_SESSION['shopperID'];
 	$login_user = $_SESSION['shopperUsername'];
 
@@ -15,7 +14,7 @@
   //items in shopping cart
   $items = '';
 
-  $sql = "SELECT * FROM orders WHERE shopperID='$shopper' AND paymentStatus='unpaid'";
+  $sql = "SELECT * FROM orders WHERE shopperID='$shopper' ORDER BY paymentStatus DESC";
 
   if ($result = mysqli_query($conn, $sql)){
 
@@ -29,8 +28,6 @@
     /* close result set */
     mysqli_free_result($result);
 }
-
-
 
 ?>
 
@@ -94,7 +91,7 @@
         <!--links for navbar on the left-->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="../index.html">Home</a></li>
               <li><a href="designs.php">Trends</a></li>
               <li><a href="men.php">Men</a></li>
               <li><a href="women.php">Women</a></li>
@@ -124,16 +121,17 @@
         <td>Product Number</td>
         <td>Product Name</td>
         <td>Description</td>
-        <td>Price</td>
+        <td>ItemPrice</td>
         <td style="text-align: center;" colspan="2">Designer</td>
         <td>Payment Status</td>
+        <td>Mpesa Code</td>
         <td>Designer Status</td>
         <td>Delivery Status</td>
         <td>Shopper Confirmation</td>
         <td>Decision Status</td>
       </tr>
       <?php 
-        $sql1 = "SELECT * FROM orders WHERE shopperID = '$shopper'";
+        $sql1 = "SELECT * FROM orders";
 
         $result1 = mysqli_query($conn,$sql1);
 
@@ -143,7 +141,7 @@
           echo "<td>".$row['clothID']."</td>";
           echo "<td>".$row['clothName']."</td>";
           echo "<td>".$row['clothDescription']."</td>";
-          echo "<td> Ksh.".$row['orderPrice']."</td>";
+          echo "<td>Ksh. ".$row['orderPrice']."</td>";
           $desID = $row['designerID'];
           $sql2 = "SELECT designerFname, designerSname FROM designerinfo WHERE designerID = '$desID'";
 
@@ -155,10 +153,11 @@
           }
 
           echo "<td>".$row['paymentStatus']."</td>";
+          echo "<td style = 'text-transform: uppercase;'>".$row['paymentCode']."</td>";
           echo "<td>".$row['designerStatus']."</td>";
           echo "<td>".$row['trpAgentStatus']."</td>";
           echo "<td>".$row['shopperStatus']."</td>";        
-          echo "<td><button style='margin:5px' type='button' class='btn btn-primary btn-block center-block'><a style='text-decoration: none; color: white;' href=\"../php/shopperConfirmation.php?id=$row[orderID]\">Pay for Order</a></button><button style='margin:5px' type='button' class='btn btn-success center-block'><a style='text-decoration: none; color: white;' href=\"../php/shopperConfirmation.php?id=$row[orderID]\">Order is Delivered</a></button> 
+          echo "<td><button style='margin:5px' type='button' class='btn btn-primary btn-block center-block'><a style='text-decoration: none; color: white;' href=\"../php/shopperPayment.php?id=$row[orderID]\">Pay for Order</a></button><button style='margin:5px' type='button' class='btn btn-success center-block'><a style='text-decoration: none; color: white;' href=\"../php/shopperConfirmation.php?id=$row[orderID]\">Order is Delivered</a></button> 
           <button style='margin:5px' type='button' class='btn btn-danger btn-block center-blocks'><a style='text-decoration: none; color: white;' href=\"../php/shopperCancellation.php?id=$row[orderID]\" onClick=\"return confirm('Are you sure you want to cancel the and get a refund?')\">Cancel Order</a></button></td>";
           echo "</tr>";   
         }
@@ -167,87 +166,6 @@
 	</div>	
 
       <!-- Footer -->
-<footer style="border: 1px solid grey; background: #red !important;" class="page-footer font-small blue pt-4">
 
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-
-      <!-- Grid row -->
-      <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-
-          <!-- Content -->
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns here to organize your footer content.</p>
-
-        </div>
-        <!-- Grid column -->
-
-        <hr class="clearfix w-100 d-md-none pb-3">
-
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-      </div>
-      <!-- Grid row -->
-
-    </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-
-  </footer>
-  
 </body>
 </html>
